@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>三条ヤヨイ</title>
+    <!-- 和風感を出すための明朝体フォントを読み込み -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* メインカラーの指定 */
+            --primary-orange: #E95420; /* 朱色に近いオレンジ */
+            --bg-white: #fdfaf7; /* 温かみのある白 */
+            --text-main: #333333;
+        }
+
+        body {
+            font-family: 'Noto Serif JP', serif;
+            background-color: var(--bg-white);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+        }
+
+        /* ヘッダー周り */
+        header {
+            text-align: center;
+            padding: 80px 20px 40px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            letter-spacing: 0.3em;
+            color: var(--primary-orange);
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+            color: #888;
+            margin-top: 10px;
+        }
+
+        /* タブバー */
+        .tab-bar {
+            display: flex;
+            justify-content: center;
+            border-top: 1px solid var(--primary-orange);
+            border-bottom: 1px solid var(--primary-orange);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 15px 0;
+            cursor: pointer;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            color: var(--text-main);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .tab:hover {
+            color: var(--primary-orange);
+            background-color: rgba(233, 84, 32, 0.05);
+        }
+
+        .tab.active {
+            color: var(--primary-orange);
+            font-weight: bold;
+        }
+
+        /* タブの間の区切り線 */
+        .tab:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 30%;
+            height: 40%;
+            width: 1px;
+            background-color: var(--primary-orange);
+            opacity: 0.3;
+        }
+
+        /* メインコンテンツ */
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .content-section {
+            display: none;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        /* 画像配置用の枠 */
+        .image-placeholder {
+            width: 100%;
+            height: 400px;
+            background-color: #ffffff;
+            border: 1px dashed var(--primary-orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-orange);
+            margin: 30px 0;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+        }
+
+        /* アニメーション */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <!-- VTuberの名前 -->
+        <h1>三条ヤヨイ</h1> 
+        <p class="subtitle">Virtual Youtuber Official</p>
+    </header>
+
+    <!-- 5つの横タブバー -->
+    <div class="tab-bar">
+        <div class="tab active" onclick="switchTab('profile')">紹介</div>
+        <div class="tab" onclick="switchTab('news')">イベント</div>
+        <div class="tab" onclick="switchTab('stream')">活動</div>
+        <div class="tab" onclick="switchTab('goods')">○○</div>
+        <div class="tab" onclick="switchTab('contact')">お問い合わせ</div>
+    </div>
+
+    <main>
+
+        <section id="profile" class="content-section active">
+            <div class="image-placeholder">[ 配置 ]</div>
+            <p>紹介文</p>
+        </section>
+
+
+        <section id="news" class="content-section">
+            <p>最新のお知らせはまだありません。</p>
+        </section>
+
+        <!-- 活動 (Stream/Videos) -->
+        <section id="stream" class="content-section">
+            <div class="image-placeholder" style="height: 250px;">[ 配置 ]</div>
+            <p>主な活動記録</p>
+        </section>
+
+        <!-- 万屋 (Goods) -->
+        <section id="goods" class="content-section">
+            <div class="image-placeholder" style="height: 250px;">[ 配置 ]</div>
+            <p>○○</p>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="content-section">
+            <p>お問い合わせやお手紙はこちらへ。</p>
+        </section>
+    </main>
+
+    <!-- タブ切り替え用プログラム -->
+    <script>
+        function switchTab(tabId) {
+            // activeクラスを外す
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.content-section').forEach(c => c.classList.remove('active'));
+
+            // クリックされたタブと対応するコンテンツをactiveにする
+            event.target.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+    </script>
+</body>
+</html>
